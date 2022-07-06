@@ -16,6 +16,7 @@ Control program for a custom made running wheel with a locking mechanism.
 * Open `Wheel.ino` with Arduino IDE, edit the value of `wheelId` so that each wheel has a unique number
 * Set `Tools/Board` to `Arduino Pro or Pro Mini"` and `Tools/Processor` to `ATmega328p (3V, 8MHz)` or `ATmega328p (5V, 15MHz)` according to the choice of micro-controller for your apparatus
 * Set one port at a time in `Tools/Port` and click `Sketch/Upload`
+* You may need to install [FTDI drivers](https://learn.sparkfun.com/tutorials/how-to-install-ftdi-drivers/all) first.
 
 If planning on editing the source code:
 * Download and install [MATLAB][MATLAB].

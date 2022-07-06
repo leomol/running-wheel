@@ -1,17 +1,19 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="26268583" file="C:\Users\molina\Documents\MATLAB\Wheel\bin\wheel.prj" location="C:\Users\molina\Documents\MATLAB\Wheel\bin" name="wheel" preferred-package-location="C:\Users\molina\Documents\MATLAB\Wheel\bin\wheel\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="3858144375" file="C:\Users\Molina\Documents\public\MATLAB\Wheel\bin\wheel.prj" location="C:\Users\Molina\Documents\public\MATLAB\Wheel\bin" name="wheel" preferred-package-location="C:\Users\Molina\Documents\public\MATLAB\Wheel\bin\wheel\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>Wheel</param.appname>
     <param.icon />
     <param.icons />
-    <param.version>1.0</param.version>
-    <param.authnamewatermark>University of Calgary</param.authnamewatermark>
-    <param.email />
-    <param.company />
+    <param.version>1.1</param.version>
+    <param.authnamewatermark>Leonardo Molina</param.authnamewatermark>
+    <param.email>leonardomt@gmail.com</param.email>
+    <param.company>CSMOpto</param.company>
     <param.summary>Control program for a running wheel</param.summary>
-    <param.description />
+    <param.description>Control program for a mouse running wheel.
+The locking mechanism engages whenever the apparatus detects that an animal with a given RFID tag reaches a previously defined locking distance and disengages for other animals or if the locking distance is extended for the animal on the wheel.
+The target distance can be applied immediately or scheduled to happen at a given time of the day, and defined separately for each animal or a group of animals.</param.description>
     <param.screenshot />
     <param.guid />
-    <param.installpath.string>\Wheel\</param.installpath.string>
+    <param.installpath.string>Wheel</param.installpath.string>
     <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
     <param.logo />
     <param.install.notes />
@@ -27,7 +29,7 @@
     <param.web.mcr>true</param.web.mcr>
     <param.package.mcr>false</param.package.mcr>
     <param.no.mcr>false</param.no.mcr>
-    <param.web.mcr.name>wheel-installer</param.web.mcr.name>
+    <param.web.mcr.name>MyAppInstaller_web</param.web.mcr.name>
     <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
     <param.no.mcr.name>MyAppInstaller_app</param.no.mcr.name>
     <param.windows.command.prompt>true</param.windows.command.prompt>
@@ -41,17 +43,16 @@
 	 
  Input Arguments 
 	 -?  print help on how to use the application 
-	 input arguments</param.help.text>
+	 input arguments 
+ Description 
+ 	 Control program for a mouse running wheel.
+The locking mechanism engages whenever the apparatus detects that an animal with a given RFID tag reaches a previously defined locking distance and disengages for other animals or if the locking distance is extended for the animal on the wheel.
+The target distance can be applied immediately or scheduled to happen at a given time of the day, and defined separately for each animal or a group of animals.</param.help.text>
     <unset>
       <param.icon />
       <param.icons />
-      <param.version />
-      <param.email />
-      <param.company />
-      <param.description />
       <param.screenshot />
       <param.guid />
-      <param.installpath.string />
       <param.installpath.combo />
       <param.logo />
       <param.install.notes />
@@ -67,6 +68,7 @@
       <param.web.mcr />
       <param.package.mcr />
       <param.no.mcr />
+      <param.web.mcr.name />
       <param.package.mcr.name />
       <param.no.mcr.name />
       <param.windows.command.prompt />
@@ -77,30 +79,27 @@
       <param.example />
     </unset>
     <fileset.main>
-      <file>C:\Users\molina\Documents\MATLAB\Wheel\Wheel.m</file>
+      <file>C:\Users\Molina\Documents\public\MATLAB\Wheel\Wheel.m</file>
     </fileset.main>
     <fileset.resources />
-    <fileset.package />
+    <fileset.package>
+      <file>C:\Users\Molina\Documents\public\MATLAB\Wheel\LICENSE.md</file>
+      <file>C:\Users\Molina\Documents\public\MATLAB\Wheel\README.md</file>
+      <file>C:\Users\Molina\Documents\public\MATLAB\Wheel\release-notes.md</file>
+    </fileset.package>
     <fileset.depfun>
-      <file>C:\Users\molina\Documents\MATLAB\Wheel\Ports.m</file>
-      <file>C:\Users\molina\Documents\MATLAB\Wheel\PowerShell.m</file>
+      <file>C:\Users\Molina\Documents\public\MATLAB\Wheel\Ports.m</file>
+      <file>C:\Users\Molina\Documents\public\MATLAB\Wheel\PowerShell.m</file>
     </fileset.depfun>
     <build-deliverables>
-      <file location="${PROJECT_ROOT}\wheel\for_testing" name="splash.png" optional="false">C:\Users\molina\Documents\MATLAB\Wheel\bin\wheel\for_testing\splash.png</file>
-      <file location="${PROJECT_ROOT}\wheel\for_testing" name="Wheel.exe" optional="false">C:\Users\molina\Documents\MATLAB\Wheel\bin\wheel\for_testing\Wheel.exe</file>
-      <file location="${PROJECT_ROOT}\wheel\for_testing" name="readme.txt" optional="true">C:\Users\molina\Documents\MATLAB\Wheel\bin\wheel\for_testing\readme.txt</file>
+      <file location="${PROJECT_ROOT}\wheel\for_testing" name="Wheel.exe" optional="false">C:\Users\Molina\Documents\public\MATLAB\Wheel\bin\wheel\for_testing\Wheel.exe</file>
+      <file location="${PROJECT_ROOT}\wheel\for_testing" name="splash.png" optional="false">C:\Users\Molina\Documents\public\MATLAB\Wheel\bin\wheel\for_testing\splash.png</file>
+      <file location="${PROJECT_ROOT}\wheel\for_testing" name="readme.txt" optional="true">C:\Users\Molina\Documents\public\MATLAB\Wheel\bin\wheel\for_testing\readme.txt</file>
     </build-deliverables>
     <workflow />
     <matlab>
-      <root>C:\Program Files\MATLAB\R2019a</root>
-      <toolboxes>
-        <toolbox name="neuralnetwork" />
-      </toolboxes>
-      <toolbox>
-        <neuralnetwork>
-          <enabled>true</enabled>
-        </neuralnetwork>
-      </toolbox>
+      <root>C:\Program Files\MATLAB\R2022a</root>
+      <toolboxes />
     </matlab>
     <platform>
       <unix>false</unix>

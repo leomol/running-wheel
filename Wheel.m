@@ -21,8 +21,7 @@
 %     not in sync: A previously connected wheel sent an unexpected message (either the device, the cabling or the program within are corrupted).
 
 % 2019-04-30. Leonardo Molina
-% 2019-06-20. Last modified.
-% See http://x.co/authorship
+% 2022-07-05 Last modified.
 classdef Wheel < handle
     properties
         debugging = false       % Print saved data to console.
@@ -43,7 +42,7 @@ classdef Wheel < handle
         trio = struct('unset', -1, 'false', 0, 'true', 1)
         lockStates = struct('locked', 0, 'unlocked', 1)
         noTag = '0000000000'        % Default tag.
-        tickerInterval = 1.0        % Interval between device state checks.
+        tickerInterval = 3.0        % Interval between device state checks.
         baudrate = 38400            % Baudrate of communication.
         nSync = 10                  % Size of the handshake.
     end
@@ -160,7 +159,11 @@ classdef Wheel < handle
             
             obj.handles.toggleConnectionButton = uibutton(obj.handles.controlsLayout, 'Text', 'Pause', 'ButtonPushedFcn', @(~, ~)obj.onToggleConnection);
             obj.handles.toggleConnectionButton.Layout.Row = 5;
-            obj.handles.toggleConnectionButton.Layout.Column = [3, 6];
+            obj.handles.toggleConnectionButton.Layout.Column = [3, 5];
+            
+            obj.handles.helpButton = uibutton(obj.handles.controlsLayout, 'Text', 'Help', 'ButtonPushedFcn', @(~, ~)web('https://github.com/leomol/running-wheel'));
+            obj.handles.helpButton.Layout.Row = 5;
+            obj.handles.helpButton.Layout.Column = 6;
             
             xlabel(obj.handles.temperatureAxes, 'Time (s)');
             ylabel(obj.handles.temperatureAxes, 'Temperature (Celsius)');
@@ -544,7 +547,7 @@ classdef Wheel < handle
             if time >= obj.tickerNext
                 obj.tickerNext = time + Wheel.tickerInterval;
                 % Scan ports regularly.
-                obj.visiblePorts = seriallist();
+                obj.visiblePorts = serialportlist("all");
                 obj.visiblePorts = obj.visiblePorts.cellstr();
                 obj.closeDisconnected();
                 if obj.scanning

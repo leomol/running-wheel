@@ -1,9 +1,10 @@
 /*
  * @file Wheel.ino
  * @brief Wheel firmware
- * @see http://x.co/authorship
+ * @author Leonardo Molina
+ * @see release-notes in https://github.com/leomol/running-wheel
  * @since 2019-04-27
- * @version 0.1.1906201300
+ * @version 0.1.2207051500
 */
 
 #include <Servo.h>
@@ -15,7 +16,7 @@
 #endif
 
 // Locking and wheel id settings.
-const uint8_t wheelId = 1;						// Wheel id, should be unique for each wheel.
+const uint8_t wheelId = 2;						// Wheel id, should be unique for each wheel.
 const uint8_t openedAngle = 30;					// Wheel unlocks at this angle.
 const int8_t closedAngle = 0;					// Wheel locks at this angle.
 
@@ -27,7 +28,6 @@ const uint8_t hallPins[] = {2, 3, 6};			// Hall sensor pins. Must preserve order
 const uint8_t tempPin = A3;						// Temperature pin.
 
 // Behavior and communication settings.
-const bool debug = false;						// Debug mode prints plain text. Set to false to use with the GUI.
 const uint8_t nSync = 10;						// Handshake signal.
 const uint8_t nHallSensors = sizeof(hallPins);	// Number of configured hall sensors.
 const uint32_t servoSetupDuration = 100;		// Pause before engaging the servo.
@@ -38,6 +38,7 @@ const uint32_t pingInterval = 100;				// Interval of the alive message.
 const uint32_t baudrate = 38400;				// Baudrate of serial communication with the PC.
 
 // State variables.
+bool debug = false;								// Debug mode prints plain text. Updates automatically according to input.
 uint32_t pingTicker = 0;
 uint32_t servoTicker = 0;
 uint32_t temperatureTicker = 0;
@@ -135,36 +136,34 @@ void loop() {
 	
 	// Parse data from PC.
 	while (Serial.available()) {
-		if (debug) {
-			char command = Serial.read();
-			switch (command) {
-				case '0':
-				case '1':
-					Serial.println(String() + "Servo: " + command);
-					setServo(command == '1');
-					break;
-				case '!':
-					Serial.println(String() + "Synchronized!");
-					Serial.println(String() + "Wheel id: " + wheelId);
-					break;
-				default:
-					Serial.println(String() + "echo: " + command);
-					break;
-			}
-		} else {
-			uint8_t command = Serial.read();
-			switch (command) {
-				case 0:
-				case 1:
-					setServo(command == 1);
-					break;
-				case 255:
-					for (int i = 0; i < nSync; i++)
-						Serial.write(255);
-					Serial.write(5);
-					Serial.write(wheelId);
-					break;
-			}
+		uint8_t command = Serial.read();
+		switch (command) {
+			case 0:
+			case 1:
+				setServo(command == 1);
+				debug = false;
+				break;
+			case 255:
+				for (int i = 0; i < nSync; i++)
+					Serial.write(255);
+				Serial.write(5);
+				Serial.write(wheelId);
+				debug = false;
+				break;
+			case '0':
+			case '1':
+				Serial.println(String() + "Servo: " + command);
+				setServo(command == '1');
+				debug = true;
+				break;
+			case '!':
+				Serial.println(String() + "Synchronized!");
+				Serial.println(String() + "Wheel id: " + wheelId);
+				debug = true;
+				break;
+			default:
+				Serial.println(String() + "echo: " + command);
+				break;
 		}
 	}
 }
