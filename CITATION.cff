@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+title: "Running wheel controller"
+abstract: "Control program for a custom made running wheel with a locking mechanism. "
+type: software
+version: 1.0.0
+doi: 10.1016/j.jneumeth.2019.108482
+date-released: 2019-07-31
+repository-code: https://github.com/leomol/running-wheel
+authors:
+  - family-names: "Molina"
+    given-names: "Leonardo A."
+    email: "leonardomt@gmail.com"
+    affiliation: "University of Calgary"
+    orcid: https://orcid.org/0000-0002-6601-7185
