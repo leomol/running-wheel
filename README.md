@@ -1,6 +1,6 @@
 # Running wheel
 Control program for a custom made running wheel with a locking mechanism.
-See [paper](https://www.sciencedirect.com/science/article/pii/S0165027019303395) for validation and further information.
+See [paper](https://www.sciencedirect.com/science/article/pii/S0165027019303395) for method validation and further information.
 ![Running Wheel - GUI](etc/running-wheel-ui.png)
 
 ## Prerequisites
@@ -60,4 +60,4 @@ This project is licensed under the [GNU GPLv3 License][License].
 [MATLAB]: https://www.mathworks.com/downloads/
 [License]: LICENSE.md
 [Source Code]: https://github.com/leomol/running-wheel/archive/master.zip
-[Release Notes]: release-notes.md
+[Release Notes]: CHANGELOG.md
