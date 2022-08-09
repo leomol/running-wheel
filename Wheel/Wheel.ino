@@ -4,7 +4,7 @@
  * @author Leonardo Molina
  * @see release-notes in https://github.com/leomol/running-wheel
  * @since 2019-04-27
- * @version 0.1.2207051500
+ * @version 0.1.2208091020
 */
 
 #include <Servo.h>
@@ -35,10 +35,11 @@ const uint32_t servoEngageDuration = 100;		// Duration for which the servo is en
 const uint32_t temperatureInterval = 5000;		// Average/report temperature at regular intervals (ms).
 const uint32_t servoInterval = 100;				// Duration the servo is engaged (ms).
 const uint32_t pingInterval = 100;				// Interval of the alive message.
-const uint32_t baudrate = 38400;				// Baudrate of serial communication with the PC.
+const uint32_t baudrate = 9600;					// Baudrate of serial communication with the PC.
 
 // State variables.
 bool debug = false;								// Debug mode prints plain text. Updates automatically according to input.
+uint32_t delta = 0;
 uint32_t pingTicker = 0;
 uint32_t servoTicker = 0;
 uint32_t temperatureTicker = 0;
@@ -79,7 +80,8 @@ void setup() {
 
 void loop() {
 	// Send ping message at regular intervals.
-	if (millis() - pingTicker > pingInterval) {
+	delta = millis() - pingTicker;
+	if (delta > pingInterval) {
 		pingTicker = millis();
 		ping();
 	}
@@ -92,14 +94,16 @@ void loop() {
 	// Update servo state.
 	switch (servoState) {
 		case ServoStates::Setup:
-			if (millis() - servoTicker >= servoSetupDuration) {
+			delta = millis() - servoTicker;
+			if (delta >= servoSetupDuration) {
 				servoTicker = millis();
 				servoState = ServoStates::Engage;
 				servo.write(servoOpened ? openedAngle : closedAngle);
 			}
 			break;
 		case ServoStates::Engage:
-			if (millis() - servoTicker >= servoEngageDuration) {
+			delta = millis() - servoTicker;
+			if (delta >= servoEngageDuration) {
 				servo.detach();
 				servoState = ServoStates::Disengage;
 			}
@@ -110,7 +114,8 @@ void loop() {
 	uint16_t currentTemperature = analogRead(tempPin);
 	averageTemperature += currentTemperature;
 	nTemperatureSamples += 1;
-	if (millis() - temperatureTicker > temperatureInterval) {
+	delta = millis() - temperatureTicker;
+	if (delta > temperatureInterval) {
 		temperature = averageTemperature / nTemperatureSamples;
 		reportTemperature(temperature);
 		averageTemperature = 0;
@@ -229,7 +234,9 @@ void reportTag() {
 void ping() {
 	ledState = !ledState;
 	digitalWrite(LED_BUILTIN, ledState);
-	if (!debug) {
+	if (debug) {
+		Serial.println(".");
+	} else {
 		Serial.write(4);
 		Serial.write(servoOpened);
 	}
