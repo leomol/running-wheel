@@ -1,4 +1,6 @@
 # Release Notes
+* 2022-08-09
+	- Changed serial port baudrate to 9600.
 * 2022-07-14
 	- Updated readme and added help button.
 	- Tested and recompiled using MATLAB R2022a.

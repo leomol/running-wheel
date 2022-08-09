@@ -21,7 +21,7 @@
 %     not in sync: A previously connected wheel sent an unexpected message (either the device, the cabling or the program within are corrupted).
 
 % 2019-04-30. Leonardo Molina
-% 2022-07-05 Last modified.
+% 2022-08-09 Last modified.
 classdef Wheel < handle
     properties
         debugging = false       % Print saved data to console.
@@ -43,7 +43,7 @@ classdef Wheel < handle
         lockStates = struct('locked', 0, 'unlocked', 1)
         noTag = '0000000000'        % Default tag.
         tickerInterval = 3.0        % Interval between device state checks.
-        baudrate = 38400            % Baudrate of communication.
+        baudrate = 9600             % Baudrate of communication.
         nSync = 10                  % Size of the handshake.
     end
     

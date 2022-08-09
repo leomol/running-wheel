@@ -1,9 +1,9 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="3858144375" file="C:\Users\Molina\Documents\public\MATLAB\Wheel\bin\wheel.prj" location="C:\Users\Molina\Documents\public\MATLAB\Wheel\bin" name="wheel" preferred-package-location="C:\Users\Molina\Documents\public\MATLAB\Wheel\bin\wheel\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="4015468904" file="C:\Users\Molina\Documents\public\MATLAB\Wheel\bin\wheel.prj" location="C:\Users\Molina\Documents\public\MATLAB\Wheel\bin" name="wheel" preferred-package-location="C:\Users\Molina\Documents\public\MATLAB\Wheel\bin\wheel\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>Wheel</param.appname>
     <param.icon />
     <param.icons />
-    <param.version>1.1</param.version>
+    <param.version>1.1.2</param.version>
     <param.authnamewatermark>Leonardo Molina</param.authnamewatermark>
     <param.email>leonardomt@gmail.com</param.email>
     <param.company>CSMOpto</param.company>
@@ -43,11 +43,7 @@ The target distance can be applied immediately or scheduled to happen at a given
 	 
  Input Arguments 
 	 -?  print help on how to use the application 
-	 input arguments 
- Description 
- 	 Control program for a mouse running wheel.
-The locking mechanism engages whenever the apparatus detects that an animal with a given RFID tag reaches a previously defined locking distance and disengages for other animals or if the locking distance is extended for the animal on the wheel.
-The target distance can be applied immediately or scheduled to happen at a given time of the day, and defined separately for each animal or a group of animals.</param.help.text>
+	 input arguments</param.help.text>
     <unset>
       <param.icon />
       <param.icons />
